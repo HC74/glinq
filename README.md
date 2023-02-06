@@ -16,8 +16,8 @@ The method of chain call
     ```go
    import . "github.com/HC74/glinq"
    type Cat struct {
-	        color, name string
-         age         int
+	   color, name string
+	   age         int
     }
    // Initialize four cats
    slice := AsSlice(&Cat{color: "red", name: "flower", age: 3}, &Cat{color: "blue", name: "flower2", age: 5},
