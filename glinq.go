@@ -19,6 +19,7 @@ func (g *GLinq[T]) Count() int {
 	return g.len
 }
 
+// AsSlice 快速转换为数组
 func AsSlice[T any](datas ...T) []T {
 	var results []T
 	var item T
