@@ -23,7 +23,7 @@ The method of chain call
    slice := AsSlice(&Cat{color: "red", name: "flower", age: 3}, &Cat{color: "blue", name: "flower2", age: 5},
 		&Cat{color: "green", name: "flower3", age: 2}, &Cat{color: "green", name: "flower4", age: 3})
     ```
-   1. Filter out cats whose color is green and whose age is greater than 2
+   Filter out cats whose color is green and whose age is greater than 2
       ```go
       first, _ := Instance(slice).Where(func(c *Cat) bool {
         return c.color == "green" && c.age > 2
