@@ -18,3 +18,13 @@ func (g *GLinq[T]) ToList() []T {
 func (g *GLinq[T]) Count() int {
 	return g.len
 }
+
+func AsSlice[T any](datas ...T) []T {
+	var results []T
+	var item T
+	for i := range datas {
+		item = datas[i]
+		results = append(results, item)
+	}
+	return results
+}
