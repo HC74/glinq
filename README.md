@@ -11,7 +11,30 @@ The method of chain call
 
 `Instance(slice)` `.Where(selector)` `.Distinct(selector)`
 
-*Example*
+### *Methods*
+#### filter methods
+- Instance(slice) Initialize the glinq instance.
+- Where(selector) Filter the contents of the slice according to the func expression.
+- Distinct(selector) Perform deduplication operations based on the return value of the expression.
+- FirstWhere(selector) Get the first element that satisfies the condition according to the condition of the expression.
+
+### Aggregation methods
+
+- Max(selector) Returns the minimum element of this slice according to the provided Comparator.
+- Min(selector) Returns the maximum element of this slice according to the provided Comparator.
+
+### Ohters methods
+
+- Any() Determines whether a slice contains any elements.
+- AnyN(selector) Determine whether there is an element in the slice that meets the condition according to the expression. 
+- ToList() return the final result set.
+- FlatMapI(selector) Convert to map type key as int,The key is returned by the selector expression.
+- FlatMapS(selector) Same as the FlatMapI method, but this time the key is a string.
+- ForEach(selector) iterate over the current slice.
+
+---
+
+### *Example*
 1. We need to initialize a set of data for the following cases
     ```go
    import . "github.com/HC74/glinq"
