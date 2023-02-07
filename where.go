@@ -1,5 +1,20 @@
 package glinq
 
+func (q *Query) Where(callback func(any) bool) *Query {
+	var results []any
+	var item any
+	for i := range q.items {
+		item = q.Get(i)
+		ok := callback(item)
+		if ok {
+			results = append(results, item)
+		}
+	}
+	q.items = results
+	q.len = len(q.items)
+	return q
+}
+
 // Where 过滤条件,入参不包含索引
 func (g *GLinq[T]) Where(callback func(T) bool) *GLinq[T] {
 	var results []T

@@ -8,7 +8,8 @@ import (
 )
 
 type Query struct {
-	items []any
+	items 	[]any
+	len 	int
 }
 
 func (s *Query) Get(index int) any {
@@ -30,12 +31,12 @@ func (s *Query) GetF32(index int) float32 {
 	return s.Get(index).(float32)
 }
 
-//GetF64 返回Float64类型
+// GetF64 返回Float64类型
 func (s *Query) GetF64(index int) float64 {
 	return s.Get(index).(float64)
 }
 
-//GetI64 返回Int64类型
+// GetI64 返回Int64类型
 func (s *Query) GetI64(index int) int64 {
 	return s.Get(index).(int64)
 }
@@ -115,7 +116,7 @@ func (g *GLinq[T]) Select(callback func(T) any) *Query {
 		v := callback(elem)
 		results = append(results, v)
 	}
-	return &Query{items: results}
+	return &Query{items: results,len: len(results)}
 }
 
 func (q *Query) ToList(data interface{}) {
@@ -136,8 +137,6 @@ func (g *GLinq[T]) SelectI(callback func(int, T) any) *Query {
 	for i := range g.elems {
 		elem = g.Get(i)
 		v := callback(i, elem)
-		of := reflect.TypeOf(v)
-		fmt.Println(of.Kind())
 		results = append(results, v)
 	}
 	return &Query{items: results}
