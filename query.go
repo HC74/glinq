@@ -78,6 +78,28 @@ func (g *GLinq[T]) First() (T, error) {
 	return item, ErrorCannotFound
 }
 
+// Last 查找最后一个
+func (g *GLinq[T]) Last() (T, error) {
+	var item T
+	slice := g.ToList()
+	if len(slice) > 0 {
+		return slice[g.len-1], nil
+	}
+	return item, ErrorCannotFound
+}
+
+// IndexOf Searches for the specified slice and returns the zero-based index of the first occurrence within the entire slice.
+func (g *GLinq[T]) IndexOf(callback func(T) bool) int {
+	var item T
+	for i := range g.elems {
+		item = g.Get(i)
+		if callback(item) {
+			return i
+		}
+	}
+	return -1
+}
+
 // Skip 跳过指定数量的元素，如果num比元素数量大，则跳过全部元素
 func (g *GLinq[T]) Skip(num int) *GLinq[T] {
 	if g.len == 0 || num == 0 {

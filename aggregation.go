@@ -30,3 +30,26 @@ func (g *GLinq[T]) Min(callback func(T) int) T {
 	}
 	return minV
 }
+
+
+// Avg 求平均值
+func (g *GLinq[T]) Avg(callback func(T) float64) float64 {
+	var item T
+	var sum float64 = 0
+	for i := range g.elems {
+		item = g.Get(i)
+		sum += callback(item)
+	}
+	return sum / float64(g.len)
+}
+
+// AvgI 求平均值 入参中含索引
+func (g *GLinq[T]) AvgI(callback func(int, T) float64) float64 {
+	var item T
+	var sum float64 = 0
+	for i := range g.elems {
+		item = g.Get(i)
+		sum += callback(i, item)
+	}
+	return sum / float64(g.len)
+}
